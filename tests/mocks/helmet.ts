@@ -30,6 +30,11 @@ import {
   defaultCrossOriginResourcePolicy
 } from '../../src/internals/useCrossOriginResourcePolicy'
 
+import {
+  useOriginAgentCluster,
+  defaultOriginAgentCluster
+} from '../../src/internals/useOriginAgentCluster'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -159,6 +164,42 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-cross-origin-resource-policy',
     handler: eventHandler(async event => {
       useCrossOriginResourcePolicy(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+
+  //
+
+  {
+    method: 'GET',
+    url: '/helmet/origin-agent-cluster',
+    handler: eventHandler(async event => {
+      useOriginAgentCluster(event, '?1')
+
+      return {
+        policy: '?1'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-origin-agent-cluster',
+    handler: eventHandler(async event => {
+      useOriginAgentCluster(event)
+
+      return {
+        policy: defaultOriginAgentCluster
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-origin-agent-cluster',
+    handler: eventHandler(async event => {
+      useOriginAgentCluster(event, false)
 
       return {
         policy: false
