@@ -35,6 +35,8 @@ import {
   defaultOriginAgentCluster
 } from '../../src/internals/useOriginAgentCluster'
 
+import { useReferrerPolicy, defaultReferrerPolicy } from '../../src/internals/useReferrerPolicy'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -170,9 +172,6 @@ export const helmetHandlers: Handler[] = [
       }
     })
   },
-
-  //
-
   {
     method: 'GET',
     url: '/helmet/origin-agent-cluster',
@@ -200,6 +199,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-origin-agent-cluster',
     handler: eventHandler(async event => {
       useOriginAgentCluster(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/referrer-policy',
+    handler: eventHandler(async event => {
+      useReferrerPolicy(event, 'origin-when-cross-origin')
+
+      return {
+        policy: 'origin-when-cross-origin'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-referrer-policy',
+    handler: eventHandler(async event => {
+      useReferrerPolicy(event)
+
+      return {
+        policy: defaultReferrerPolicy
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-referrer-policy',
+    handler: eventHandler(async event => {
+      useReferrerPolicy(event, false)
 
       return {
         policy: false
