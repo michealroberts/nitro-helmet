@@ -20,6 +20,11 @@ import {
   defaultCrossOriginEmbedderPolicy
 } from '../../src/internals/useCrossOriginEmbedderPolicy'
 
+import {
+  useCrossOriginResourcePolicy,
+  defaultCrossOriginResourcePolicy
+} from '../../src/internals/useCrossOriginResourcePolicy'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -74,7 +79,7 @@ export const helmetHandlers: Handler[] = [
       useCrossOriginEmbedderPolicy(event)
 
       return {
-        policy: defaultContentSecurityPolicy
+        policy: defaultCrossOriginEmbedderPolicy
       }
     })
   },
@@ -83,6 +88,42 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-cross-origin-embedder-policy',
     handler: eventHandler(async event => {
       useCrossOriginEmbedderPolicy(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+
+  //
+
+  {
+    method: 'GET',
+    url: '/helmet/cross-origin-resource-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginResourcePolicy(event, 'cross-origin')
+
+      return {
+        policy: 'cross-origin'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-cross-origin-resource-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginResourcePolicy(event)
+
+      return {
+        policy: defaultCrossOriginResourcePolicy
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-cross-origin-resource-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginResourcePolicy(event, false)
 
       return {
         policy: false
