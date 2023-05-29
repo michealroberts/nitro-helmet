@@ -21,6 +21,11 @@ import {
 } from '../../src/internals/useCrossOriginEmbedderPolicy'
 
 import {
+  useCrossOriginOpenerPolicy,
+  defaultCrossOriginOpenerPolicy
+} from '../../src/internals/useCrossOriginOpenerPolicy'
+
+import {
   useCrossOriginResourcePolicy,
   defaultCrossOriginResourcePolicy
 } from '../../src/internals/useCrossOriginResourcePolicy'
@@ -94,9 +99,39 @@ export const helmetHandlers: Handler[] = [
       }
     })
   },
+  {
+    method: 'GET',
+    url: '/helmet/cross-origin-opener-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginOpenerPolicy(event, 'same-origin')
 
-  //
+      return {
+        policy: 'same-origin'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-cross-origin-opener-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginOpenerPolicy(event)
 
+      return {
+        policy: defaultCrossOriginOpenerPolicy
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-cross-origin-opener-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginOpenerPolicy(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
   {
     method: 'GET',
     url: '/helmet/cross-origin-resource-policy',
