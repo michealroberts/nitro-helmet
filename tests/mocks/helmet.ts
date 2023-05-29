@@ -37,6 +37,11 @@ import {
 
 import { useReferrerPolicy, defaultReferrerPolicy } from '../../src/internals/useReferrerPolicy'
 
+import {
+  useStrictTransportSecurity,
+  defaultStrictTransportSecurity
+} from '../../src/internals/useStrictTransportSecurity'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -232,6 +237,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-referrer-policy',
     handler: eventHandler(async event => {
       useReferrerPolicy(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/strict-transport-security',
+    handler: eventHandler(async event => {
+      useStrictTransportSecurity(event, 'max-age=15552000; includeSubDomains')
+
+      return {
+        policy: 'max-age=15552000; includeSubDomains'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-strict-transport-security',
+    handler: eventHandler(async event => {
+      useStrictTransportSecurity(event)
+
+      return {
+        policy: defaultStrictTransportSecurity
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-strict-transport-security',
+    handler: eventHandler(async event => {
+      useStrictTransportSecurity(event, false)
 
       return {
         policy: false
