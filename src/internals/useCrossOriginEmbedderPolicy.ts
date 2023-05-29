@@ -8,6 +8,8 @@
 
 import { type H3Event, setHeader } from 'h3'
 
+import { type CrossOriginEmbedderPolicy } from './types'
+
 /*****************************************************************************************************************/
 
 export const defaultCrossOriginEmbedderPolicy = 'require-corp'
@@ -16,7 +18,7 @@ export const defaultCrossOriginEmbedderPolicy = 'require-corp'
 
 export const useCrossOriginEmbedderPolicy = (
   event: H3Event,
-  policy: string | boolean = defaultCrossOriginEmbedderPolicy
+  policy: CrossOriginEmbedderPolicy | boolean = defaultCrossOriginEmbedderPolicy
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return
