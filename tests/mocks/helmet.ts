@@ -15,6 +15,11 @@ import {
   defaultContentSecurityPolicy
 } from '../../src/internals/useContentSecurityPolicy'
 
+import {
+  useCrossOriginEmbedderPolicy,
+  defaultCrossOriginEmbedderPolicy
+} from '../../src/internals/useCrossOriginEmbedderPolicy'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -45,6 +50,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-content-security-policy',
     handler: eventHandler(async event => {
       useContentSecurityPolicy(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/cross-origin-embedder-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginEmbedderPolicy(event, 'require-corp')
+
+      return {
+        policy: 'require-corp'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-cross-origin-embedder-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginEmbedderPolicy(event)
+
+      return {
+        policy: defaultContentSecurityPolicy
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-cross-origin-embedder-policy',
+    handler: eventHandler(async event => {
+      useCrossOriginEmbedderPolicy(event, false)
 
       return {
         policy: false
