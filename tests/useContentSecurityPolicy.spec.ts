@@ -1,7 +1,7 @@
 /*****************************************************************************************************************/
 
 // @author         Michael Roberts <michael@observerly.com>
-// @package        @observerly/nitro-cors
+// @package        @observerly/nitro-helmet
 // @license        Copyright © 2021-2023 observerly
 
 /*****************************************************************************************************************/
