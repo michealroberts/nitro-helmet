@@ -52,6 +52,11 @@ import {
   defaultXDNSPrefetchControl
 } from '../../src/internals/useXDNSPrefetchControl'
 
+import {
+  useXDownloadOptions,
+  defaultXDownloadOptions
+} from '../../src/internals/useXDownloadOptions'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -346,6 +351,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-x-dns-prefetch-control',
     handler: eventHandler(async event => {
       useXDNSPrefetchControl(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-download-options',
+    handler: eventHandler(async event => {
+      useXDownloadOptions(event, 'noopen')
+
+      return {
+        policy: 'noopen'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-download-options',
+    handler: eventHandler(async event => {
+      useXDownloadOptions(event)
+
+      return {
+        policy: defaultXDownloadOptions
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-download-options',
+    handler: eventHandler(async event => {
+      useXDownloadOptions(event, false)
 
       return {
         policy: false
