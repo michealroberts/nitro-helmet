@@ -10,6 +10,10 @@ import { eventHandler, setHeaders } from 'h3'
 
 import { type Handler } from '../shared/handler'
 
+import { defineHelmetEventHandler } from '../../src/defineHelmetEventHandler'
+
+/*****************************************************************************************************************/
+
 import {
   useContentSecurityPolicy,
   defaultContentSecurityPolicy
@@ -69,6 +73,17 @@ import { useXXSSProtection, defaultXXSSProtection } from '../../src/internals/us
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
+  {
+    method: 'GET',
+    url: '/helmet',
+    handler: defineHelmetEventHandler(
+      eventHandler(async _event => {
+        return {
+          secure: true
+        }
+      })
+    )
+  },
   {
     method: 'GET',
     url: '/helmet/content-security-policy',

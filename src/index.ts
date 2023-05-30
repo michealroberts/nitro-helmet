@@ -6,6 +6,6 @@
 
 /*****************************************************************************************************************/
 
-export { type H3HelmetOptions } from './internals/types'
+export { type H3HelmetOptions, defineHelmetEventHandler } from './defineHelmetEventHandler'
 
 /*****************************************************************************************************************/
