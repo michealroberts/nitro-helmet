@@ -64,6 +64,8 @@ import {
   defaultXPermittedCrossDomainPolicies
 } from '../../src/internals/useXPermittedCrossDomainPolicies'
 
+import { useXXSSProtection, defaultXXSSProtection } from '../../src/internals/useXXSSProtection'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -457,6 +459,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-x-permitted-cross-domain-policies',
     handler: eventHandler(async event => {
       useXPermittedCrossDomainPolicies(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-xss-protection',
+    handler: eventHandler(async event => {
+      useXXSSProtection(event, '1; mode=block')
+
+      return {
+        policy: '1; mode=block'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-xss-protection',
+    handler: eventHandler(async event => {
+      useXXSSProtection(event)
+
+      return {
+        policy: defaultXXSSProtection
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-xss-protection',
+    handler: eventHandler(async event => {
+      useXXSSProtection(event, false)
 
       return {
         policy: false
