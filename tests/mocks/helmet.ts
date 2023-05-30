@@ -59,6 +59,11 @@ import {
 
 import { useXFrameOptions, defaultXFrameOptions } from '../../src/internals/useXFrameOptions'
 
+import {
+  useXPermittedCrossDomainPolicies,
+  defaultXPermittedCrossDomainPolicies
+} from '../../src/internals/useXPermittedCrossDomainPolicies'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -419,6 +424,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-x-frame-options',
     handler: eventHandler(async event => {
       useXFrameOptions(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-permitted-cross-domain-policies',
+    handler: eventHandler(async event => {
+      useXPermittedCrossDomainPolicies(event, 'none')
+
+      return {
+        policy: 'none'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-permitted-cross-domain-policies',
+    handler: eventHandler(async event => {
+      useXPermittedCrossDomainPolicies(event)
+
+      return {
+        policy: defaultXPermittedCrossDomainPolicies
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-permitted-cross-domain-policies',
+    handler: eventHandler(async event => {
+      useXPermittedCrossDomainPolicies(event, false)
 
       return {
         policy: false
