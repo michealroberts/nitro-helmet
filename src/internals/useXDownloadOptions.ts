@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XDownloadOptions } from './types'
+import { type UseEventHeaderPolicy, type XDownloadOptions } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultXDownloadOptions = 'noopen'
 
 /*****************************************************************************************************************/
 
-export const useXDownloadOptions = (
-  event: H3Event,
-  policy: XDownloadOptions | boolean = defaultXDownloadOptions
+export const useXDownloadOptions: UseEventHeaderPolicy<XDownloadOptions> = (
+  event,
+  policy = defaultXDownloadOptions
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

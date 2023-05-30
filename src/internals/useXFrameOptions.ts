@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XFrameOptions } from './types'
+import { type UseEventHeaderPolicy, type XFrameOptions } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultXFrameOptions = 'SAMEORIGIN'
 
 /*****************************************************************************************************************/
 
-export const useXFrameOptions = (
-  event: H3Event,
-  policy: XFrameOptions | boolean = defaultXFrameOptions
+export const useXFrameOptions: UseEventHeaderPolicy<XFrameOptions> = (
+  event,
+  policy = defaultXFrameOptions
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

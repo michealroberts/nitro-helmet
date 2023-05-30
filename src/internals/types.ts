@@ -62,7 +62,7 @@ export type XPermittedCrossDomainPolicies = 'none' | 'master-only' | 'by-content
 
 /*****************************************************************************************************************/
 
-export type XXSSProtection = 0 | 1 | '1' | '1; mode=block' | '1; report=<reporting-uri>'
+export type XXSSProtection = string
 
 /*****************************************************************************************************************/
 

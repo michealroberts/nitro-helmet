@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XXSSProtection } from './types'
+import { type UseEventHeaderPolicy, type XXSSProtection } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultXXSSProtection = '1; mode=block'
 
 /*****************************************************************************************************************/
 
-export const useXXSSProtection = (
-  event: H3Event,
-  policy: XXSSProtection | boolean = defaultXXSSProtection
+export const useXXSSProtection: UseEventHeaderPolicy<XXSSProtection> = (
+  event,
+  policy = defaultXXSSProtection
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

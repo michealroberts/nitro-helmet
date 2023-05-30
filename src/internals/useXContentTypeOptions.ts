@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XContentTypeOptions } from './types'
+import { type UseEventHeaderPolicy, type XContentTypeOptions } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultXContentTypeOptions = 'nosniff'
 
 /*****************************************************************************************************************/
 
-export const useXContentTypeOptions = (
-  event: H3Event,
-  policy: XContentTypeOptions | boolean = defaultXContentTypeOptions
+export const useXContentTypeOptions: UseEventHeaderPolicy<XContentTypeOptions> = (
+  event,
+  policy = defaultXContentTypeOptions
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return
