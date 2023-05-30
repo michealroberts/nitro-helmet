@@ -47,6 +47,11 @@ import {
   defaultXContentTypeOptions
 } from '../../src/internals/useXContentTypeOptions'
 
+import {
+  useXDNSPrefetchControl,
+  defaultXDNSPrefetchControl
+} from '../../src/internals/useXDNSPrefetchControl'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -308,6 +313,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-x-content-type-options',
     handler: eventHandler(async event => {
       useXContentTypeOptions(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-dns-prefetch-control',
+    handler: eventHandler(async event => {
+      useXDNSPrefetchControl(event, 'off')
+
+      return {
+        policy: 'off'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-dns-prefetch-control',
+    handler: eventHandler(async event => {
+      useXDNSPrefetchControl(event)
+
+      return {
+        policy: defaultXDNSPrefetchControl
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-dns-prefetch-control',
+    handler: eventHandler(async event => {
+      useXDNSPrefetchControl(event, false)
 
       return {
         policy: false
