@@ -42,6 +42,11 @@ import {
   defaultStrictTransportSecurity
 } from '../../src/internals/useStrictTransportSecurity'
 
+import {
+  useXContentTypeOptions,
+  defaultXContentTypeOptions
+} from '../../src/internals/useXContentTypeOptions'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -270,6 +275,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-strict-transport-security',
     handler: eventHandler(async event => {
       useStrictTransportSecurity(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-content-type-options',
+    handler: eventHandler(async event => {
+      useXContentTypeOptions(event, 'nosniff')
+
+      return {
+        policy: 'nosniff'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-content-type-options',
+    handler: eventHandler(async event => {
+      useXContentTypeOptions(event)
+
+      return {
+        policy: defaultXContentTypeOptions
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-content-type-options',
+    handler: eventHandler(async event => {
+      useXContentTypeOptions(event, false)
 
       return {
         policy: false
