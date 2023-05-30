@@ -57,6 +57,8 @@ import {
   defaultXDownloadOptions
 } from '../../src/internals/useXDownloadOptions'
 
+import { useXFrameOptions, defaultXFrameOptions } from '../../src/internals/useXFrameOptions'
+
 /*****************************************************************************************************************/
 
 export const helmetHandlers: Handler[] = [
@@ -384,6 +386,39 @@ export const helmetHandlers: Handler[] = [
     url: '/helmet/no-x-download-options',
     handler: eventHandler(async event => {
       useXDownloadOptions(event, false)
+
+      return {
+        policy: false
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/x-frame-options',
+    handler: eventHandler(async event => {
+      useXFrameOptions(event, 'SAMEORIGIN')
+
+      return {
+        policy: 'SAMEORIGIN'
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/default-x-frame-options',
+    handler: eventHandler(async event => {
+      useXFrameOptions(event)
+
+      return {
+        policy: defaultXFrameOptions
+      }
+    })
+  },
+  {
+    method: 'GET',
+    url: '/helmet/no-x-frame-options',
+    handler: eventHandler(async event => {
+      useXFrameOptions(event, false)
 
       return {
         policy: false
