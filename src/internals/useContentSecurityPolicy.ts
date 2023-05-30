@@ -6,7 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
+
+import { type UseEventHeaderPolicy } from './types'
 
 /*****************************************************************************************************************/
 
@@ -27,9 +29,9 @@ export const defaultContentSecurityPolicy = "\
 
 /*****************************************************************************************************************/
 
-export const useContentSecurityPolicy = (
-  event: H3Event,
-  policy: string | boolean = defaultContentSecurityPolicy
+export const useContentSecurityPolicy: UseEventHeaderPolicy<string> = (
+  event,
+  policy = defaultContentSecurityPolicy
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

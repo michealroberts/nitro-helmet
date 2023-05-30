@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type OriginAgentCluster } from './types'
+import { type UseEventHeaderPolicy, type OriginAgentCluster } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultOriginAgentCluster = '?1'
 
 /*****************************************************************************************************************/
 
-export const useOriginAgentCluster = (
-  event: H3Event,
-  policy: OriginAgentCluster | boolean = defaultOriginAgentCluster
+export const useOriginAgentCluster: UseEventHeaderPolicy<OriginAgentCluster> = (
+  event,
+  policy = defaultOriginAgentCluster
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type CrossOriginOpenerPolicy } from './types'
+import { type UseEventHeaderPolicy, type CrossOriginOpenerPolicy } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultCrossOriginOpenerPolicy = 'same-origin'
 
 /*****************************************************************************************************************/
 
-export const useCrossOriginOpenerPolicy = (
-  event: H3Event,
-  policy: CrossOriginOpenerPolicy | boolean = defaultCrossOriginOpenerPolicy
+export const useCrossOriginOpenerPolicy: UseEventHeaderPolicy<CrossOriginOpenerPolicy> = (
+  event,
+  policy = defaultCrossOriginOpenerPolicy
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

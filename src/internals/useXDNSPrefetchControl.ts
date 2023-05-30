@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XDNSPrefetchControl } from './types'
+import { type UseEventHeaderPolicy, type XDNSPrefetchControl } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultXDNSPrefetchControl = 'off'
 
 /*****************************************************************************************************************/
 
-export const useXDNSPrefetchControl = (
-  event: H3Event,
-  policy: XDNSPrefetchControl | boolean = defaultXDNSPrefetchControl
+export const useXDNSPrefetchControl: UseEventHeaderPolicy<XDNSPrefetchControl> = (
+  event,
+  policy = defaultXDNSPrefetchControl
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

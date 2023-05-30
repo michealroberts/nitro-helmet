@@ -6,7 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
+
+import { type UseEventHeaderPolicy } from './types'
 
 /*****************************************************************************************************************/
 
@@ -14,9 +16,9 @@ export const defaultStrictTransportSecurity = 'max-age=15552000; includeSubDomai
 
 /*****************************************************************************************************************/
 
-export const useStrictTransportSecurity = (
-  event: H3Event,
-  policy: string | boolean = defaultStrictTransportSecurity
+export const useStrictTransportSecurity: UseEventHeaderPolicy<string> = (
+  event,
+  policy = defaultStrictTransportSecurity
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return

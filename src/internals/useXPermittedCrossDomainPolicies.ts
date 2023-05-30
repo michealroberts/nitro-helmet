@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type XPermittedCrossDomainPolicies } from './types'
+import { type UseEventHeaderPolicy, type XPermittedCrossDomainPolicies } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,10 +16,9 @@ export const defaultXPermittedCrossDomainPolicies = 'none'
 
 /*****************************************************************************************************************/
 
-export const useXPermittedCrossDomainPolicies = (
-  event: H3Event,
-  policy: XPermittedCrossDomainPolicies | boolean = defaultXPermittedCrossDomainPolicies
-) => {
+export const useXPermittedCrossDomainPolicies: UseEventHeaderPolicy<
+  XPermittedCrossDomainPolicies
+> = (event, policy = defaultXPermittedCrossDomainPolicies) => {
   if (typeof policy === 'boolean' && !policy) {
     return
   }

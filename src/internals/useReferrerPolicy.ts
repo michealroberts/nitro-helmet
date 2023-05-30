@@ -6,9 +6,9 @@
 
 /*****************************************************************************************************************/
 
-import { type H3Event, setHeader } from 'h3'
+import { setHeader } from 'h3'
 
-import { type ReferrerPolicy } from './types'
+import { type UseEventHeaderPolicy, type ReferrerPolicy } from './types'
 
 /*****************************************************************************************************************/
 
@@ -16,9 +16,9 @@ export const defaultReferrerPolicy = 'no-referrer'
 
 /*****************************************************************************************************************/
 
-export const useReferrerPolicy = (
-  event: H3Event,
-  policy: ReferrerPolicy | boolean = defaultReferrerPolicy
+export const useReferrerPolicy: UseEventHeaderPolicy<ReferrerPolicy> = (
+  event,
+  policy = defaultReferrerPolicy
 ) => {
   if (typeof policy === 'boolean' && !policy) {
     return
