@@ -22,13 +22,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/nitro-helment.umd.js",
-  "module": "./dist/nitro-helment.es.js",
+  "main": "./dist/nitro-helmet.umd.js",
+  "module": "./dist/nitro-helmet.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/nitro-helment.es.js",
-      "require": "./dist/nitro-helment.umd.js"
+      "import": "./dist/nitro-helmet.es.js",
+      "require": "./dist/nitro-helmet.umd.js"
     }
   },
   "scripts": {
