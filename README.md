@@ -1,4 +1,4 @@
-# Nitro Helmet-esque Security
+# nitro Helmet-esque Security Headers
 
 nitro native Helmet-esque security headers.
 
