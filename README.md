@@ -36,6 +36,18 @@ const handler = eventHandler(async event => {
 export default defineHelmetEventHandler(handler)
 ```
 
+or
+
+```ts
+import { helmetEventHandler } from 'nitro-helmet'
+
+const handler = eventHandler(async event => {
+  // ...
+})
+
+export default helmetEventHandler(handler)
+```
+
 If you would like to override the default options, you can do so as follows:
 
 ```ts

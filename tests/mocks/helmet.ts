@@ -12,6 +12,8 @@ import { type Handler } from '../shared/handler'
 
 import { defineHelmetEventHandler } from '../../src/defineHelmetEventHandler'
 
+import { helmetEventHandler } from '../../src/helmetEventHandler'
+
 /*****************************************************************************************************************/
 
 import {
@@ -77,6 +79,17 @@ export const helmetHandlers: Handler[] = [
     method: 'GET',
     url: '/helmet',
     handler: defineHelmetEventHandler(
+      eventHandler(async _event => {
+        return {
+          secure: true
+        }
+      })
+    )
+  },
+  {
+    method: 'GET',
+    url: '/helmet-event-handler',
+    handler: helmetEventHandler(
       eventHandler(async _event => {
         return {
           secure: true
