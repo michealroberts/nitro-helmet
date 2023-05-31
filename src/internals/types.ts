@@ -67,19 +67,19 @@ export type XXSSProtection = string
 /*****************************************************************************************************************/
 
 export interface H3HelmetOptions {
-  contentSecurityPolicy: string | boolean
-  crossOriginEmbedderPolicy: CrossOriginEmbedderPolicy | boolean
-  crossOriginOpenerPolicy: CrossOriginOpenerPolicy | boolean
-  crossOriginResourcePolicy: CrossOriginResourcePolicy | boolean
-  originAgentCluster: OriginAgentCluster | boolean
-  referrerPolicy: ReferrerPolicy | boolean
-  strictTransportSecurity: string | boolean
-  xContentTypeOptions: XContentTypeOptions | boolean
-  xDNSPrefetchControl: XDNSPrefetchControl | boolean
-  xDownloadOptions: XDownloadOptions | boolean
-  xFrameOptions: XFrameOptions | boolean
-  xPermittedCrossDomainPolicies: XPermittedCrossDomainPolicies | boolean
-  xXSSProtection: XXSSProtection | boolean
+  contentSecurityPolicy?: string | boolean
+  crossOriginEmbedderPolicy?: CrossOriginEmbedderPolicy | boolean
+  crossOriginOpenerPolicy?: CrossOriginOpenerPolicy | boolean
+  crossOriginResourcePolicy?: CrossOriginResourcePolicy | boolean
+  originAgentCluster?: OriginAgentCluster | boolean
+  referrerPolicy?: ReferrerPolicy | boolean
+  strictTransportSecurity?: string | boolean
+  xContentTypeOptions?: XContentTypeOptions | boolean
+  xDNSPrefetchControl?: XDNSPrefetchControl | boolean
+  xDownloadOptions?: XDownloadOptions | boolean
+  xFrameOptions?: XFrameOptions | boolean
+  xPermittedCrossDomainPolicies?: XPermittedCrossDomainPolicies | boolean
+  xXSSProtection?: XXSSProtection | boolean
 }
 
 /*****************************************************************************************************************/
