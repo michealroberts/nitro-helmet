@@ -36,7 +36,7 @@ const handler = eventHandler(async event => {
 export default defineHelmetEventHandler(handler)
 ```
 
-or
+...or...
 
 ```ts
 import { helmetEventHandler } from 'nitro-helmet'
