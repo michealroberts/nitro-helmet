@@ -14,11 +14,11 @@ import { toNodeListener } from 'h3'
 
 import { server } from './utilities/server'
 
-import { defineHelmetEventHandler } from '../src'
+import { helmetEventHandler } from '../src'
 
 /*****************************************************************************************************************/
 
-describe('defineHelmetEventHandler', () => {
+describe('helmetEventHandler', () => {
   let request: SuperTest<Test>
 
   beforeEach(() => {
@@ -26,11 +26,11 @@ describe('defineHelmetEventHandler', () => {
   })
 
   it('should be defined', () => {
-    expect(defineHelmetEventHandler).toBeDefined()
+    expect(helmetEventHandler).toBeDefined()
   })
 
   it('should set all security headers correctly on the request', async () => {
-    const res = await request.get('/helmet', {
+    const res = await request.get('/helmet-event-handler', {
       method: 'GET'
     })
     expect(res.header['content-security-policy']).toBeDefined()

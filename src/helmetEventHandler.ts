@@ -6,8 +6,16 @@
 
 /*****************************************************************************************************************/
 
-export { type H3HelmetOptions, defineHelmetEventHandler } from './defineHelmetEventHandler'
+import { type EventHandler } from 'h3'
 
-export { helmetEventHandler } from './helmetEventHandler'
+import { type H3HelmetOptions } from './internals/types'
+
+import { defineHelmetEventHandler } from './defineHelmetEventHandler'
+
+/*****************************************************************************************************************/
+
+export const helmetEventHandler = <T>(handler: EventHandler<T>, options?: H3HelmetOptions) => {
+  return defineHelmetEventHandler(handler, options)
+}
 
 /*****************************************************************************************************************/
