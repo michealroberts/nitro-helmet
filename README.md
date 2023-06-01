@@ -36,16 +36,16 @@ const handler = eventHandler(async event => {
 export default defineHelmetEventHandler(handler)
 ```
 
-...or...
+...or... using as nitro middleware:
 
 ```ts
+// :file middleware/helmet.ts
 import { helmetEventHandler } from 'nitro-helmet'
 
-const handler = eventHandler(async event => {
-  // ...
+export default helmetEventHandler(_event => {}, {
+  crossOriginResourcePolicy: 'cross-origin'
+  // ... add your options overrides here
 })
-
-export default helmetEventHandler(handler)
 ```
 
 If you would like to override the default options, you can do so as follows:
