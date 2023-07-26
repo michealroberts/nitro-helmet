@@ -6,7 +6,7 @@
 
 /*****************************************************************************************************************/
 
-import { eventHandler, setHeaders } from 'h3'
+import { eventHandler } from 'h3'
 
 import { type Handler } from '../shared/handler'
 
