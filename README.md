@@ -96,3 +96,10 @@ The `defineHelmetEventHandler` functions take two arguments:
 
 - `handler`: the event handler to wrap of type `EventHandler<T>`, which will ensure typesafety for the event handler return type.
 - `options`: the options to pass to the cors handler of type `H3HelmetOptions`.
+
+## Acknowledgements
+
+This library would not be possible if it were not for standing on the shoulders of these giants:
+
+- [h3](https://github.com/unjs)
+- [helmet.js](https://helmetjs.github.io)
