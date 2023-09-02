@@ -24,6 +24,22 @@ yarn add nitro-helmet
 
 nitro Helmet is built upon the h3 library. To read more about h3, please consult the [h3 repository](https://github.com/unjs/h3).
 
+To get started, you can enable CORS on a specific event handler by using the object syntax definitions intorduced in nitro v2.6.0 and h3 v1.8.0 as follows:
+
+```ts
+import { helmet } from 'nitro-helmet'
+
+export default eventHandler({
+  onResponse: helmet({
+    crossOriginResourcePolicy: 'cross-origin'
+    // ... add your options overrides here
+  }),
+  async handler(event) {
+    return 'Hello Helmet!'
+  }
+})
+```
+
 nitro-helmet aims to provide a simple wrapper to define standard security headers for any event handler per nitro event handler, or per route. To use it, simply import the `defineHelmetEventHandler` function and wrap your event handler with it as follows:
 
 ```ts
