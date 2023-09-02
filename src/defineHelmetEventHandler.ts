@@ -6,7 +6,12 @@
 
 /*****************************************************************************************************************/
 
-import { type EventHandler, defineEventHandler } from 'h3'
+import {
+  type EventHandler,
+  type EventHandlerRequest,
+  type EventHandlerResponse,
+  defineEventHandler
+} from 'h3'
 
 import { type H3HelmetOptions } from './internals/types'
 
@@ -32,11 +37,14 @@ export { type H3HelmetOptions }
 
 /*****************************************************************************************************************/
 
-export const defineHelmetEventHandler = <T extends any>(
-  handler: EventHandler<T>,
+export const defineHelmetEventHandler = <
+  TRequest extends EventHandlerRequest,
+  TResponse extends EventHandlerResponse
+>(
+  handler: EventHandler<TRequest, TResponse>,
   options?: H3HelmetOptions
-) => {
-  return defineEventHandler(async event => {
+): EventHandler<EventHandlerRequest, TResponse> => {
+  return defineEventHandler(event => {
     // Merge the user provided options with the default options:
     const opts = { ...defaultOptions, ...options }
 
