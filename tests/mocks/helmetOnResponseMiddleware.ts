@@ -6,14 +6,25 @@
 
 /*****************************************************************************************************************/
 
-import { helmetHandlers } from './helmet'
-
-import { helmetOnResponseMiddlewareHandlers } from './helmetOnResponseMiddleware'
+import { eventHandler } from 'h3'
 
 import { type Handler } from '../shared/handler'
 
+import { helmet } from '../../src/onResponseHelmetMiddleware'
+
 /*****************************************************************************************************************/
 
-export const handlers: Handler[] = [...helmetHandlers, ...helmetOnResponseMiddlewareHandlers]
+export const helmetOnResponseMiddlewareHandlers: Handler[] = [
+  {
+    method: 'GET',
+    url: '/on-response-middleware/helmet',
+    handler: eventHandler({
+      onBeforeResponse: [helmet()],
+      async handler(event) {
+        return 'Hello Helmet!'
+      }
+    })
+  }
+]
 
 /*****************************************************************************************************************/
